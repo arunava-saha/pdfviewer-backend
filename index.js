@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+require("dotenv").config();
 app.use(express.json());
 const fs = require("fs");
 const { PDFDocument } = require("pdf-lib");
@@ -8,8 +9,7 @@ const cors = require("cors");
 app.use(cors());
 app.use("/files", express.static("files"));
 //mongodb connection----------------------------------------------
-const mongoUrl =
-  "mongodb+srv://aru:1234@cluster0.okhy35m.mongodb.net/FileViewer?retryWrites=true&w=majority";
+const mongoUrl = process.env.DB;
 
 mongoose
   .connect(mongoUrl)
